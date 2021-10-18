@@ -15,15 +15,15 @@ BG = pygame.Rect((0, 0), (ORIGINAL_BG_POS, 0))
 FPS = 60
 
 def window_handler():
-    # WIN.fill(BG_COLOR)
+    WIN.fill(BG_COLOR)
     pygame.display.update()
 
 def background_scroll_handler(BG):
 
-    BG.y -= BG_SCROLL_VEL
+    BG.y += BG_SCROLL_VEL
+    pygame.display.update()
     WIN.blit(BG_IMAGE, (0, BG.y))
-    if BG.y + BG.height < 500:
-        WIN.blit(BG_IMAGE, (0, BG.y + BG.height))
+    WIN.blit(BG_IMAGE.subsurface((0, 0, WIDTH, BG.y)), (0, 0))
     pygame.display.update()
 
 
